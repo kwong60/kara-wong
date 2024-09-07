@@ -52,4 +52,7 @@
   .letter:nth-child(4) {
     animation-delay: 3s;
   }
+
+  #map {
+  }
   
