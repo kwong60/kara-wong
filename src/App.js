@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import logo from './logo.svg'; // Assuming this is your logo
-import './App.css';
+import logo from './images/surelogo.png'; 
 import './style.css';
 import Home from './components/Home.js'
 import Settings from './components/Settings.js'
+import Navbar from './navbar.js'
 
 function App() {
   useEffect(() => {
@@ -20,26 +20,21 @@ function App() {
       <div>
         {/* Preloader Section */}
         <div id="preloader">
-          <img src={logo} alt="Company Logo" id="logo" />
           <div id="company-name">
             <span className="letter">S</span>
             <span className="letter">u</span>
             <span className="letter">r</span>
             <span className="letter">e</span>
           </div>
-          <div>In Sure We Trust</div>
+          <div className="slogan">In Sure We Trust</div>
+          <img src={logo} alt="Company Logo" id="logo"/>
 
         </div>
 
         {/* Your website content */}
         <div id="content" style={{ display: 'none' }}>
           {/* Navigation Links */}
-          <nav>
-            <ul>
-              <li><Link to="/">Home</Link></li>
-              <li><Link to="/settings">Settings</Link></li>
-            </ul>
-          </nav>
+          <Navbar />
 
           {/* Define Routes */}
           <Routes>
