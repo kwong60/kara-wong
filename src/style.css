@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
 /* Preloader styles */
 #preloader {
     position: fixed;
@@ -16,17 +22,32 @@
   #logo {
     width: 100px;
     margin-bottom: 20px;
+    margin-top: 50px;
   }
   
   #company-name {
-    font-size: 60px;
+    font-size: 150px;
     display: flex;
     letter-spacing: 1px;
+    font: 'Montserrat', sans-serif;
+    font-style: italic;
+    font-weight: 50;
+    color: #3B64B8;
   }
   
   .letter {
     display: inline-block;
     animation: growShrink 2s ease-in-out;
+    font: 'Montserrat', sans-serif;
+    font-style: italic;
+    font-weight: 50;
+    color: #3B64B8;
+  }
+
+  .slogan {
+    color: #3B64B8;
+    font-size: 40px;
+    font-weight: 100;
   }
   
   /* Keyframes for the letter animation */
@@ -35,7 +56,7 @@
       transform: scale(1);
     }
     50% {
-      transform: scale(1.5);
+      transform: scale(1.25);
     }
   }
   
@@ -55,4 +76,49 @@
 
   #map {
   }
+
+  .navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    padding: 1rem;
+    color:#3B64B8;
+  }
   
+  .navbar-brand a {
+    color:#3B64B8;
+    text-decoration: none;
+  }
+
+  .navbar-brand img {
+    height: 50px;
+    width: auto;
+    padding-left: 2.5rem;
+  }
+  
+  .navbar-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    font-size: 30px;
+    text-align: center;
+    position: center;
+  }
+  
+  .navbar-links li a {
+    color: #3B64B8;
+    text-decoration: none;
+  }
+  
+  .navbar-links:hover {
+    text-decoration: none;
+    transform: scale(1.1);
+    font-weight: 300;
+    color: #3B64B8;
+  }
+
+  .navbar-links li a.active {
+    text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+  }
