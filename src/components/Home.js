@@ -1,47 +1,91 @@
 import React, { useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
-import DistanceSearchBar from './DistanceSearchBar';
 import Button from 'react-bootstrap/Button';
+import Dropdown from 'react-bootstrap/Dropdown';
+
 
 function Home() {
-  const [distance, setDistance] = useState(null); // To store the selected distance
+  const [selectedService, setSelectedService] = useState(''); // To store selected service
   const [map, setMap] = useState(null); // Store the map instance
+  const [markers, setMarkers] = useState([]); // To store markers
+  const [hospitals, setHospitals] = useState([]); // To store the search results including travel time
+  const [userLocation, setUserLocation] = useState(null); // Store user's current location
 
   useEffect(() => {
-    // Initialize the Mapbox map after the component mounts
+    // Initialize Mapbox map
     mapboxgl.accessToken = 'pk.eyJ1IjoiZW1pbHl3YW5nMTg4IiwiYSI6ImNtMHNpZHQzYjBrODgya29oYnFibzk4YnkifQ.VBw7i5CBXZ8zFZ6aTXiPqQ';
-
     const newMap = new mapboxgl.Map({
-      container: 'map', // container ID
-      style: 'mapbox://styles/mapbox/streets-v11', // style URL
-      center: [-71.4, 41.8], // starting position [lng, lat]
-      zoom: 9, // starting zoom
+      container: 'map',
+      style: 'mapbox://styles/mapbox/streets-v11',
+      center: [-71.4, 41.8],
+      zoom: 9,
     });
+    setMap(newMap);
 
-    setMap(newMap); // Save map instance in state
+    // newMap.on('load', () => {
+    //   newMap.resize();
+    // });
+
+    // Get user's current location
+    navigator.geolocation.getCurrentPosition((position) => {
+      setUserLocation([position.coords.longitude, position.coords.latitude]);
+    });
 
     return () => newMap.remove(); // Cleanup on unmount
   }, []);
 
+  // Function to handle selecting a service from the dropdown
+  const handleServiceSelect = (service) => {
+    setSelectedService(service); // Set only the selected service
+  };
+
   const handleSearch = () => {
-    if (!distance) {
-      alert('Please select a distance');
+    if (!selectedService) {
+      alert('Please select a service');
       return;
     }
 
-    // CHANGE THIS to actually use proximity bias
-    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/hospital.json?proximity=-71.4,41.8&limit=10&access_token=${mapboxgl.accessToken}`;
-    
+    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/hospital.json?proximity=${userLocation[0]},${userLocation[1]}&limit=10&access_token=${mapboxgl.accessToken}`;
+
     fetch(url)
       .then((response) => response.json())
       .then((data) => {
-        console.log(`Hospitals within ${distance} miles:`, data);
+        console.log(`Hospitals with selected service:`, data.features);
 
-        // add markers to the map based on the results
+        // Clear existing markers
+        markers.forEach(marker => marker.remove());
+        setMarkers([]); // Reset marker state
+
+        if (data.features.length === 0) {
+          alert("No hospitals found with the selected service.");
+          setHospitals([]); // Clear the hospitals list if no results
+          return;
+        }
+
+        // Create an array to store hospitals with travel time
+        const hospitalsWithTravelTime = [];
+
+        // Fetch travel times for each hospital
         data.features.forEach((hospital) => {
-          new mapboxgl.Marker()
-            .setLngLat(hospital.geometry.coordinates)
-            .addTo(map); // this doesn't account for zoom... fix meeeeee
+          const travelUrl = `https://api.mapbox.com/directions/v5/mapbox/driving/${userLocation[0]},${userLocation[1]};${hospital.geometry.coordinates[0]},${hospital.geometry.coordinates[1]}?access_token=${mapboxgl.accessToken}`;
+
+          fetch(travelUrl)
+            .then((response) => response.json())
+            .then((travelData) => {
+              const duration = travelData.routes[0].duration / 60; // Travel time in minutes
+
+              // Store hospital details and travel time
+              hospitalsWithTravelTime.push({
+                name: hospital.text,
+                placeName: hospital.place_name,
+                travelTime: duration.toFixed(2), // Round to 2 decimal places
+              });
+
+              // If all travel times have been fetched, update state
+              if (hospitalsWithTravelTime.length === data.features.length) {
+                setHospitals(hospitalsWithTravelTime);
+              }
+            });
         });
       })
       .catch((error) => {
@@ -52,11 +96,70 @@ function Home() {
   return (
     <div>
       <div className="map-container">
-        <div id="map" style={{ width: '100%', height: '400px' }}></div>
+        <div id="map"></div>
       </div>
-      <div className="distance-search-bar">
-        <DistanceSearchBar setDistance={setDistance} />{' '}
-        <Button onClick={handleSearch}>Search for In-Network Hospitals</Button>
+      <div className="search-container">
+
+        <div className="search-bar">
+        <div className="service-dropdown">
+            <label htmlFor="service">Service:</label>
+            <select
+              name="service"
+              id="service"
+              onChange={(e) => handleServiceSelect(e.target.value)}
+              style={{ padding: '0.5rem', marginLeft: '1rem' }}
+            >
+              <option value="">--Select One--</option>
+              <option value="emergency">Emergency</option>
+              <option value="maternity">Maternity</option>
+              <option value="pediatrics">Pediatrics</option>
+              <option value="cardiology">Cardiology</option>
+            </select>
+          </div>
+          <div className="search-button">
+            <button id="search-button-button" size="lg" variant="outline-primary" onClick={handleSearch}>
+              Search for Hospitals
+            </button>
+          </div>
+          <div className="travel-dropdown">
+            <label htmlFor="service">Transportation Method:</label>
+            <select
+              name="service"
+              id="service"
+              onChange={(e) => handleServiceSelect(e.target.value)}
+              style={{ padding: '0.5rem', marginLeft: '1rem' }}
+            >
+              <option value="">--Select One--</option>
+              <option value="emergency">Driving</option>
+              <option value="maternity">Walking</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      
+      <div className="results">
+        {hospitals.length > 0 ? (
+          <table className="hospital-table">
+            <thead>
+              <tr>
+                <th>Hospital Name</th>
+                <th>Location</th>
+                <th>Travel Time (minutes)</th>
+              </tr>
+            </thead>
+            <tbody>
+              {hospitals.map((hospital, index) => (
+                <tr key={index}>
+                  <td>{hospital.name}</td>
+                  <td>{hospital.placeName}</td>
+                  <td>{hospital.travelTime}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <p>No hospitals found. Try selecting a different service.</p>
+        )}
       </div>
     </div>
   );
