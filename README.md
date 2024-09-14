@@ -1,3 +1,37 @@
+<div align="center">
+
+# Sure
+## [Repo link](https://github.com/emilywang188/sure)
+
+</div>
+
+<h2>In Sure We Trust | A Health Insurance Assistant!</h2>
+
+<div align="center">
+  <img alt="Demo" src=""/>
+</div>
+
+### Features:
+- Check back soon!
+
+### Tools & Technologies:
+- Mapbox GL JS
+- Node.js
+- React
+- JavaScript
+- HTML/CSS
+
+### Contributors:
+- Sissy Han (dhan1004)
+- Emily Wang (emilywang188)
+- Kara Wong (kwong60)
+
+### Using the repo:
+Navigate to the director and run the command `npm start`.
+
+Note: You may have to run `npm install` to download the required packages.
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

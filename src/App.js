@@ -7,19 +7,22 @@ import Settings from './components/Settings.js'
 import Navbar from './navbar.js'
 
 function App() {
+  // useEffect(() => {
+  //   // Show the content and hide the preloader after 3 seconds
+  //   setTimeout(() => {
+  //     document.getElementById('preloader').style.display = 'none';
+  //     document.getElementById('content').style.display = 'block';
+  //   }, 4000); // 3 seconds delay
+  // }, []);
   useEffect(() => {
-    // Show the content and hide the preloader after 3 seconds
-    setTimeout(() => {
-      document.getElementById('preloader').style.display = 'none';
-      document.getElementById('content').style.display = 'block';
-    }, 4000); // 3 seconds delay
-  }, []);
+    document.getElementById('content').style.display = 'block';
+  });
 
   return (
     <Router>
       <div>
         {/* Preloader Section */}
-        <div id="preloader">
+        {/* <div id="preloader">
           <div id="company-name">
             <span className="letter">S</span>
             <span className="letter">u</span>
@@ -29,7 +32,7 @@ function App() {
           <div className="slogan">In Sure We Trust</div>
           <img src={logo} alt="Company Logo" id="logo"/>
 
-        </div>
+        </div> */}
 
         {/* Your website content */}
         <div id="content" style={{ display: 'none' }}>
@@ -44,6 +47,7 @@ function App() {
         </div>
       </div>
     </Router>
+    
   );
 }
 
