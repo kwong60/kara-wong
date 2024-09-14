@@ -78,13 +78,16 @@ body {
 
 /* Full page container */
 .map-container {
-  margin-left: 100px;
-  margin-right: 100px;
-  /* display: flex; */
+  /* margin-left: 100px;
+  margin-right: 100px; */
+  margin:auto;
+  display: flex;
+  width: 1000px;
   padding:0px;
   height: 400px;
   justify-content: center; /* Horizontally center */
   align-items: center;     /* Vertically center */
+  align-self: center;
   border: 2px solid #3B64B8;
   color: white;
   }
@@ -220,4 +223,33 @@ body {
   .hospital-table tr:hover {
     background-color: #ddd;
   }
+
+  .progress-bar {
+    margin-top: 10px;
+    background-color: #ffffff;
+    width: 70%;
+    border-radius: 18px;
+    margin: auto;
+    border-color:#3B64B8;
+    border-width: 2px;
+    border-style: solid;
+  }
+
+  .progress-bar-body {
+    background-color: #3B64B8;
+    border-radius: 15px;
+    color: white;
+    padding: 5px; /* Add padding around the text */
+    box-sizing: border-box; /* Ensure the padding doesn't affect the width */
+    width: 25%; /* Adjust based on the current progress (still applies to the width of the bar) */
+    text-align: center; /* Center the text inside the bar */
+}
+
+
+  .deductible-label {
+    margin-left: 225px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
   

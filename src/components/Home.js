@@ -98,6 +98,10 @@ function Home() {
       <div className="map-container">
         <div id="map"></div>
       </div>
+      <div className="deductible-label">Deductible: $100.00 out of $400.00</div>
+      <div className="progress-bar">
+        <div className="progress-bar-body" style= {{ width:'25%' }}>25%</div>
+      </div><br></br>
       <div className="search-container">
 
         <div className="search-bar">
