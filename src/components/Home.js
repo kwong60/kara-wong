@@ -1,15 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import mapboxgl from 'mapbox-gl';
 import Button from 'react-bootstrap/Button';
-import Dropdown from 'react-bootstrap/Dropdown';
-
 
 function Home() {
   const [selectedService, setSelectedService] = useState(''); // To store selected service
+  const [selectedTransport, setSelectedTransport] = useState('driving'); // To store selected transportation method
   const [map, setMap] = useState(null); // Store the map instance
   const [markers, setMarkers] = useState([]); // To store markers
   const [hospitals, setHospitals] = useState([]); // To store the search results including travel time
   const [userLocation, setUserLocation] = useState(null); // Store user's current location
+
+  useEffect(() => {
+    window.addEventListener('resize', () => {
+      if (map) {
+        map.resize();
+      }
+    });
+  
+    return () => window.removeEventListener('resize', () => {
+      if (map) {
+        map.resize();
+      }
+    });
+  }, [map]);
 
   useEffect(() => {
     // Initialize Mapbox map
@@ -17,18 +30,32 @@ function Home() {
     const newMap = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [-71.4, 41.8],
+      center: [-71.4, 41.8], // Centering on Providence, RI
       zoom: 9,
     });
-    setMap(newMap);
 
-    // newMap.on('load', () => {
-    //   newMap.resize();
-    // });
+    // Make sure the map resizes properly based on the container dimensions
+    newMap.on('load', () => {
+      newMap.resize(); // Trigger map resize on load
+    });
+
+    setMap(newMap);
 
     // Get user's current location
     navigator.geolocation.getCurrentPosition((position) => {
-      setUserLocation([position.coords.longitude, position.coords.latitude]);
+      const userCoordinates = [-71.4, 41.8];
+      setUserLocation(userCoordinates);  // Save the user location
+    
+      if (newMap) {
+        // Center the map on the user's location if map exists
+        newMap.flyTo({
+          center: userCoordinates,
+          zoom: 12 // Adjust the zoom for user location
+        });
+    
+        // Optionally, add a marker for the user's location
+        // new mapboxgl.Marker({ offset: [430, -650], color: 'blue' }).setLngLat([-71.4, 41.8]).addTo(newMap);
+      }
     });
 
     return () => newMap.remove(); // Cleanup on unmount
@@ -39,13 +66,23 @@ function Home() {
     setSelectedService(service); // Set only the selected service
   };
 
+  // Function to handle selecting the transportation method
+  const handleTransportSelect = (transport) => {
+    setSelectedTransport(transport); // Set the transportation method
+  };
+
   const handleSearch = () => {
     if (!selectedService) {
       alert('Please select a service');
       return;
     }
 
-    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/hospital.json?proximity=${userLocation[0]},${userLocation[1]}&limit=10&access_token=${mapboxgl.accessToken}`;
+    if (!userLocation) {
+      alert('User location is not available');
+      return;
+    }
+
+    const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/hospital.json?proximity=-71.3949184,41.8250752&limit=10&access_token=${mapboxgl.accessToken}`;
 
     fetch(url)
       .then((response) => response.json())
@@ -54,7 +91,33 @@ function Home() {
 
         // Clear existing markers
         markers.forEach(marker => marker.remove());
-        setMarkers([]); // Reset marker state
+        setMarkers([]);  // Reset marker state
+
+        const newMarkers = [];
+        new mapboxgl.Marker({ offset: [430, -650], color: 'blue' }).setLngLat([-71.4, 41.8]).addTo(map);
+
+        const marker1 = new mapboxgl.Marker({ color: 'green', offset: [620, -860]}).setLngLat([-71.4, 41.8]).setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>")).addTo(map);
+        newMarkers.push(marker1);
+        const marker2 = new mapboxgl.Marker({ color: 'green', offset: [260, -790]}).setLngLat([-71.4, 41.8]).setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>")).addTo(map);
+        newMarkers.push(marker2);
+        const marker3 = new mapboxgl.Marker({ color: 'black', offset: [400, -690]}).setLngLat([-71.4, 41.8]).setPopup(new mapboxgl.Popup().setHTML("<h1>Hello World!</h1>")).addTo(map);
+        newMarkers.push(marker3);
+        
+        setMarkers(newMarkers);  // Update the state with the new markers
+
+        if (data.features.length > 0) {
+          const bounds = new mapboxgl.LngLatBounds();
+        
+          // Extend bounds for each hospital's coordinates
+          data.features.forEach((feature) => {
+            bounds.extend(feature.geometry.coordinates);
+          });
+        
+          // Fit the map to the bounds
+          map.fitBounds(bounds, {
+            padding: 50  // Add padding around the markers
+          });
+        }
 
         if (data.features.length === 0) {
           alert("No hospitals found with the selected service.");
@@ -67,12 +130,12 @@ function Home() {
 
         // Fetch travel times for each hospital
         data.features.forEach((hospital) => {
-          const travelUrl = `https://api.mapbox.com/directions/v5/mapbox/driving/${userLocation[0]},${userLocation[1]};${hospital.geometry.coordinates[0]},${hospital.geometry.coordinates[1]}?access_token=${mapboxgl.accessToken}`;
+          const travelUrl = `https://api.mapbox.com/directions/v5/mapbox/${selectedTransport}/${userLocation[0]},${userLocation[1]};${hospital.geometry.coordinates[0]},${hospital.geometry.coordinates[1]}?access_token=${mapboxgl.accessToken}`;
 
           fetch(travelUrl)
             .then((response) => response.json())
             .then((travelData) => {
-              const duration = travelData.routes[0].duration / 60; // Travel time in minutes
+              let duration = travelData.routes[0].duration / 60; // Travel time in minutes
 
               // Store hospital details and travel time
               hospitalsWithTravelTime.push({
@@ -98,14 +161,18 @@ function Home() {
       <div className="map-container">
         <div id="map"></div>
       </div>
-      <div className="deductible-label">Deductible: $100.00 out of $400.00</div>
+      <div className="deductible-label">
+        Deductible<sup>ⓘ
+          <span className="tooltiptext">The amount you pay for covered healthcare services before your insurance plan starts to pay. With a $2,000 deductible, for example, you pay the first $2,000 of covered services yourself.</span>
+        </sup>: $500.00 out of $2,000.00
+      </div>
+
       <div className="progress-bar">
-        <div className="progress-bar-body" style= {{ width:'25%' }}>25%</div>
+        <div className="progress-bar-body" style={{ width:'25%' }}>25%</div>
       </div><br></br>
       <div className="search-container">
-
         <div className="search-bar">
-        <div className="service-dropdown">
+          <div className="service-dropdown">
             <label htmlFor="service">Service:</label>
             <select
               name="service"
@@ -121,26 +188,25 @@ function Home() {
             </select>
           </div>
           <div className="search-button">
-            <button id="search-button-button" size="lg" variant="outline-primary" onClick={handleSearch}>
+            <Button id="search-button-button" size="lg" variant="outline-primary" onClick={handleSearch}>
               Search for Hospitals
-            </button>
+            </Button>
           </div>
           <div className="travel-dropdown">
-            <label htmlFor="service">Transportation Method:</label>
+            <label htmlFor="transport">Transportation Method:</label>
             <select
-              name="service"
-              id="service"
-              onChange={(e) => handleServiceSelect(e.target.value)}
+              name="transport"
+              id="transport"
+              onChange={(e) => handleTransportSelect(e.target.value)}
               style={{ padding: '0.5rem', marginLeft: '1rem' }}
             >
-              <option value="">--Select One--</option>
-              <option value="emergency">Driving</option>
-              <option value="maternity">Walking</option>
+              <option value="driving">Driving</option>
+              <option value="walking">Walking</option>
             </select>
           </div>
         </div>
       </div>
-      
+
       <div className="results">
         {hospitals.length > 0 ? (
           <table className="hospital-table">
@@ -154,7 +220,11 @@ function Home() {
             <tbody>
               {hospitals.map((hospital, index) => (
                 <tr key={index}>
-                  <td>{hospital.name}</td>
+                  <td >{hospital.name}{(hospital.name === 'Butler Hospital' || hospital.name === 'Providence VA Medical Center') && (
+                <span style={{ color: 'green', marginLeft: '8px', fontSize: '0.8em' }}>
+                  <b><i>IN NETWORK!</i></b>
+                </span>
+              )}</td>
                   <td>{hospital.placeName}</td>
                   <td>{hospital.travelTime}</td>
                 </tr>

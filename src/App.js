@@ -33,6 +33,9 @@ function App() {
           <img src={logo} alt="Company Logo" id="logo"/>
 
         </div>
+        <div className="header-container">
+          <span className="header">IN SURE WE TRUST</span>
+        </div>
 
         {/* Your website content */}
         <div id="content" style={{ display: 'none' }}>

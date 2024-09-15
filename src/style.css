@@ -99,6 +99,16 @@ body {
     width: 100%;
     color:white;
     font-size: 0;
+    position: relative;
+  }
+
+  .map-container button {
+    visibility: hidden;
+  }
+
+  .mapboxgl-popup {
+    display: block !important;
+    visibility: visible !important;
   }
 
   .search-container {
@@ -157,8 +167,8 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #ffffff;
-    padding: 1rem;
-    color:#3B64B8;
+   color:#3B64B8;
+    margin-top:0px;
   }
   
   .navbar-brand a {
@@ -319,11 +329,66 @@ body {
     text-align: center; /* Center the text inside the bar */
 }
 
+.deductible-label {
+  margin-left: 230px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  display: inline-block;
+  position: relative; /* Ensure the tooltip stays within this label */
+}
 
-  .deductible-label {
-    margin-left: 225px;
-    margin-top: 20px;
-    margin-bottom: 10px;
-  }
+.deductible-label sup {
+  cursor: pointer;
+  position: relative; /* Tooltip will be positioned relative to this */
+  color:#3B64B8;
 
-  
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 180px;
+  background-color: #3B64B8;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%; /* Adjust this value to control the tooltip's vertical position */
+  left: 50%;
+  transform: translateX(-50%); /* Center the tooltip horizontally */
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.deductible-label sup:hover .tooltiptext {
+  visibility: visible;
+  opacity: 0.9;
+}
+
+.header-container {
+  display: flex;
+  justify-content: center; /* Horizontal centering */
+  margin-bottom: 0px;
+  margin-top: 10px;
+}
+
+.header {
+  font-family: 'Montserrat', sans-serif;
+  color: #3B64B8;
+  font-size: 20px;
+}
+
+#tooltip2 {
+  color: black;
+  position: absolute;
+  visibility: hidden; /* Initially hidden */
+  background-color: white;
+  padding: 5px;
+  border-radius: 3px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+  z-index: 100; /* Make sure it's above the map */
+  pointer-events: none; /* Prevent mouse interaction */
+  white-space: nowrap;
+}
+
