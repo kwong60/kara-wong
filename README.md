@@ -36,6 +36,8 @@ Navigate to the director and run the command `npm start`.
 
 Note: You may have to run `npm install` to download the required packages.
 
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Future directions
+- Chatbot to assist with questions the user may have about healthcare
+- Generalize search so the user can be anywhere on the map
+- Order search results by in-network priority, then distance priority
+- Expand the number of supported health insurance plans
