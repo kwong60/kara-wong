@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
-import logo from './images/surelogo.png'; 
+import logo from './images/logo.png'; 
 import './style.css';
 import Home from './components/Home.js'
 import Projects from './components/Projects.js'
