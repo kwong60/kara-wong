@@ -27,8 +27,8 @@ function Home() {
           position: 'fixed',
           top: '5%',
           left: '1%',
-          width: '230px',
-          height: '230px',
+          width: '16%',
+          height: 'auto',
           transform: 'rotateY(180deg)',
           zIndex: 5
         }} 
@@ -41,8 +41,8 @@ function Home() {
           position: 'fixed',
           bottom: '0%',
           left: '30%',
-          width: '230px',
-          height: '230px',
+          width: '16%',
+          height: 'auto',
         }} 
       />
        <img 
@@ -70,8 +70,8 @@ function Home() {
           position: 'fixed',
           bottom: '0%',
           left: '57%',
-          width: '220px',
-          height: '220px',
+          width: '14%',
+          height: 'auto',
         }} 
       />
     </div>
