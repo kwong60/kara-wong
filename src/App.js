@@ -3,26 +3,17 @@ import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom';
 import logo from './images/surelogo.png'; 
 import './style.css';
 import Home from './components/Home.js'
-import Settings from './components/Settings.js'
+import Projects from './components/Projects.js'
+import Resume from './components/Resume.js'
 import Navbar from './navbar.js'
 
 function App() {
-  useEffect(() => {
-    // Show the content and hide the preloader after 3 seconds
-    setTimeout(() => {
-      document.getElementById('preloader').style.display = 'none';
-      document.getElementById('content').style.display = 'block';
-    }, 4000); // 3 seconds delay
-  }, []);
-  useEffect(() => {
-    document.getElementById('content').style.display = 'block';
-  });
 
   return (
     <Router>
       <div>
         {/* Preloader Section */}
-        <div id="preloader">
+        <div id="preloader" style={{ display: 'none' }}>
           <div id="company-name">
             <span className="letter">S</span>
             <span className="letter">u</span>
@@ -33,19 +24,17 @@ function App() {
           <img src={logo} alt="Company Logo" id="logo"/>
 
         </div>
-        <div className="header-container">
-          <span className="header">IN SURE WE TRUST</span>
-        </div>
+      
 
         {/* Your website content */}
-        <div id="content" style={{ display: 'none' }}>
+        <div id="content">
           {/* Navigation Links */}
-          <Navbar />
 
           {/* Define Routes */}
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/settings" element={<Settings />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/resume" element={<Resume />} />
           </Routes>
         </div>
       </div>
