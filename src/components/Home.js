@@ -27,7 +27,7 @@ function Home() {
           position: 'fixed',
           top: '5%',
           left: '1%',
-          width: '17%',
+          width: '15%',
           height: 'auto',
           transform: 'rotateY(180deg)',
           zIndex: 5
