@@ -12,19 +12,6 @@ function App() {
   return (
     <Router>
       <div>
-        {/* Preloader Section */}
-        <div id="preloader" style={{ display: 'none' }}>
-          <div id="company-name">
-            <span className="letter">S</span>
-            <span className="letter">u</span>
-            <span className="letter">r</span>
-            <span className="letter">e</span>
-          </div>
-          <div className="slogan">In Sure We Trust</div>
-          <img src={logo} alt="Company Logo" id="logo"/>
-
-        </div>
-      
 
         {/* Your website content */}
         <div id="content">
