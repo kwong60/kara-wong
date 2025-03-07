@@ -5,7 +5,10 @@ import './style.css';
 import Home from './components/Home.js'
 import Projects from './components/Projects.js'
 import Resume from './components/Resume.js'
+import SearchBar from './components/SearchBar.js'
+import CITElevator from './components/CITElevator.js'
 import Navbar from './navbar.js'
+import { components } from 'react-select';
 
 function App() {
 
@@ -22,6 +25,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/resume" element={<Resume />} />
+            <Route path="/projects/search-bar" element={<SearchBar />} />
+            <Route path="/projects/CIT-elevator" element={<CITElevator />} />
           </Routes>
         </div>
       </div>
