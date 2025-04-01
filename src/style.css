@@ -328,3 +328,28 @@
     justify-content: space-between;
     width: 100%;
   }
+
+  .newton-ss {
+    width: 500px;
+    height: auto;
+  }
+
+  .newton-ss-annotations {
+    width: 800px;
+    height: auto;
+  }
+
+  .phone {
+    width: 650px;
+    height: auto;
+  }
+
+  .tablet-responsive{
+    width: 400px;
+    height: auto;
+  }
+
+  .phone-responsive{
+    width: 300px;
+    height: auto;
+  }

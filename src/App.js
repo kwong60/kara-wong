@@ -7,6 +7,7 @@ import Projects from './components/Projects.js'
 import Resume from './components/Resume.js'
 import SearchBar from './components/SearchBar.js'
 import CITElevator from './components/CITElevator.js'
+import NewtonMA from './components/NewtonMA.js'
 import Navbar from './navbar.js'
 import { components } from 'react-select';
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/resume" element={<Resume />} />
             <Route path="/projects/search-bar" element={<SearchBar />} />
             <Route path="/projects/CIT-elevator" element={<CITElevator />} />
+            <Route path="/projects/newton-ma" element={<NewtonMA />} />
           </Routes>
         </div>
       </div>
