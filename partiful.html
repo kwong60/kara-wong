@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kara Wong | Partiful: Shared Ideas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Quando&display=swap" rel="stylesheet">
+  <style>
+    body {
+        font-family: "Quando", serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 24px;
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+        }
+
+      html {
+        scroll-padding-top: 14vh;
+        scroll-behavior: smooth;
+      }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+      }
+
+    .logo {
+      height: 60px;
+      margin-left: 10%;
+      transition: transform 0.3s ease; 
+    }
+
+    .logo:hover {
+      transform: scale(1.1)
+    }
+
+    nav {
+        display: flex;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: #ffffff;
+        z-index: 1000;
+        height: 10%;
+        box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
+        justify-content: space-between;
+        }
+
+    nav ul {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        list-style: none;
+        justify-content: flex-end;
+        align-items: center;
+        }
+
+    nav ul li {
+        margin: 0 25px;
+        }
+
+    nav ul li a {
+        display: block;
+        padding: 25px;
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+        transition: transform 0.3s ease;
+        font-size: 18px;
+    }
+
+    nav ul li a:hover {
+      transform: scale(1.1);
+      text-decoration: underline;
+    }
+
+    .title-container {
+          display: flex;
+          width: 100%;
+          margin-top: 10%
+        }
+
+        .text-content {
+          width: 50%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          padding-left: 6%;
+          height: auto
+        }
+
+        .top-left-corner {
+        transform: scaleX(-1);
+          width: 23%;
+          height: auto;
+          position: absolute;
+          top: 3vh;
+          left: -5%;
+          align-self: flex-start;
+        }
+
+        .title {
+        font-size: 1.5em;
+        font-weight: 500;
+        color: #000000;
+        margin-bottom: 6%;
+        }
+
+        .description {
+        font-size: 0.7em;
+        color: #000000;
+        font-weight: 200;
+        }
+
+        .image-content {
+          width: 50%;
+          overflow: hidden;
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .partiful-image {
+          border-radius: 8px;
+          max-height: 60vh;
+          aspect-ratio: auto;
+          width: 70%
+        }
+
+        a {
+          text-decoration: none;
+        }
+
+        .fade-in-section {
+          opacity: 0;
+          transform: translateY(5vh);
+          visibility: hidden;
+          transition: opacity 0.5s ease-out, transform 0.7s ease-out;
+          will-change: opacity, visibility;
+        }
+        
+        .fade-in-section.is-visible {
+          opacity: 1;
+          transform: none;
+          visibility: visible;
+        }
+
+        .overview-content {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            height: auto
+        }
+
+        .overview-box {
+            display: flex;
+            flex-direction: row;
+            background-color: #E9EAFE;
+            margin-top: 2%;
+            border-radius: 20px;
+            width: 85%;
+            justify-content: space-around;
+            padding-top: 2%;
+            padding-bottom: 2%;
+        }
+
+        .overview-title {
+            font-size: 0.8em;
+            font-weight: 600;
+            color: #000000;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .overview-description {
+            font-size: 0.6em;
+            color: #000000;
+            font-weight: 200;
+            text-align: center;
+        }
+
+        .content-container {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          padding: 0% 5%;
+          box-sizing: border-box;
+          margin-top: 5%
+        }
+
+        .side-nav {
+          width: 20%;
+          min-width: 160px;
+          padding-right: 20px;
+        }
+
+        .side-nav ul {
+          list-style-type: none;
+          padding: 0;
+          position: sticky;
+          top: 15vh;
+        }
+
+        .side-nav ul li {
+          margin-bottom: 20px;
+        }
+
+        .side-nav ul li a {
+          text-decoration: none;
+          color: #000;
+          font-size: 0.8em;
+          transition: transform 0.3s ease;
+          display: inline-block; 
+        }
+
+        .side-nav ul li a:hover {
+          transform: scale(1.1);
+          text-decoration: underline;
+        }
+
+        .main-content {
+          width: 80%;
+        }
+
+        .main-content section {
+          margin-bottom: 36px;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .main-content h2 {
+          font-size: 1.1em;
+          font-weight: 600;
+          margin-bottom: 10px;
+        }
+
+        .main-content p {
+          font-size: 0.7em;
+          font-weight: 400;
+          margin-bottom: 2px;
+          line-height: 1.5;
+        }
+
+        .carousel-container {
+          display: flex;
+          position: relative;
+          width: 100%;
+          margin-top: 15%;
+          overflow: visible;
+          margin-bottom: 10%;
+        }
+
+        .carousel-track {
+          position: relative;
+          width: 100%;
+          height: 100%;
+        }
+
+        .carousel-item {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          height: 200px;
+          transform: translate(-50%, -50%) scale(0.8);
+          opacity: 0;
+          transition: all 0.5s ease;
+          box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+          z-index: 0;
+        }
+
+        .carousel-item img {
+          height: 100%;
+          width: auto;
+          object-fit: cover;
+          display: block;
+        }
+
+        .carousel-item.active {
+          transform: translate(-50%, -50%) scale(1);
+          opacity: 1;
+          z-index: 3;
+        }
+
+        .carousel-item.prev {
+          transform: translate(-80%, -50%) scale(0.85);
+          opacity: 0.5;
+          z-index: 2;
+        }
+
+        .carousel-item.next {
+          transform: translate(-20%, -50%) scale(0.85);
+          opacity: 0.5;
+          z-index: 2;
+        }
+
+        .carousel-btn {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          color: #000000;
+          background: none;
+          border: none;
+          font-size: 2rem;
+          padding: 0 10px;
+          cursor: pointer;
+          z-index: 5;
+        }
+
+        .carousel-btn.prev {
+          left: 10%;
+        }
+
+        .carousel-btn.next {
+          right: 10%;
+        }
+
+        .wireframe-container {
+          flex-wrap: wrap;
+          justify-content: space-evenly;
+          align-items: center;
+          display: flex;
+          flex-direction: row;
+          width: 100%
+        }
+
+        .wireframes {
+          width: 200px;
+          margin-top: 5%;
+          object-fit: contain;
+        }
+
+        .hifi-container {
+          flex-wrap: wrap;
+          justify-content: space-evenly;
+          align-items: center;
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          margin-top: 5%
+        }
+
+       .hifi-gif {
+        width: 200px
+       }
+
+       .button-container {
+        width: 100;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+       }
+
+       .prototype-button {
+        display: block;
+        margin-top: 15%;
+        padding: 12px 24px;
+        background-color: white;
+        color: rgb(0, 0, 0);
+        border: 2px solid rgb(0, 0, 0);
+        border-radius: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        font-family: "Quando", serif;;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+        font-weight: 550
+      }
+
+      .prototype-button:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+        background-color: #E9EAFE;
+      }
+
+      .button-link {
+        text-decoration: none;
+      }
+
+      .hamburger {
+        display: none;
+        font-size: 2em;
+        cursor: pointer;
+        margin-right: 20px
+      }
+
+      .hamburger-icon {
+        width: 70px;
+        height: auto;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        margin-right: 0%;
+      }
+
+      @media screen and (max-width: 1000px) {
+        .top-left-corner {
+          display: none
+      }
+
+        .carousel-item {
+          height: 150px
+        }
+
+        .wireframe-container {
+          flex-direction: column
+      }
+
+        .hifi-container {
+          flex-direction: column;
+          gap: 1rem
+        }
+    }
+
+
+      @media screen and (max-width: 768px) {
+        .hamburger {
+          display: block;
+          padding-right: 20%;
+        }
+
+        .carousel-item {
+          margin-top: 20px;
+          height: 90px
+        }
+
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          width: 100vw;
+          background-color: #ffffff;
+          position: fixed;
+          top: 10%;
+          left: 0;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+          max-height: 21vh;
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        nav ul {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        nav ul li {
+          width: 100%;
+          margin: 0;
+        }
+
+        nav ul li a {
+          width: 100%;
+          padding: 15px 25px;
+          border-bottom: 1px solid #ddd;
+        }
+
+        nav ul li a:hover {
+          transform: scale(1.01);
+          text-decoration: underline;
+        }
+
+        .title-container {
+          margin-top: 25%
+        }
+
+        .overview-box {
+          flex-direction: column;
+          margin: 5% 0;
+        }
+
+        .overview-description {
+            margin: 5% 0
+        }
+
+        .overview-title{
+          margin-bottom: 8px;
+        }
+
+        .carousel-btn {
+          margin-top: 7%;
+        }
+
+        .carousel-btn.prev {
+          left: 2%;
+        }
+
+        .carousel-btn.next {
+          right: 2%;
+        }
+
+      }
+
+  </style>
+</head>
+<body>
+    
+  <nav>
+    <div class="logo-container">
+        <a href="index.html#home">
+          <img src="images/karawonglogo.png" alt="Kara Wong Logo" class="logo" />
+        </a>
+      </div>
+      <div class="nav-right">
+        <div class="hamburger" onclick="toggleMenu()">
+          <img src="images/hamburger.png" alt="Menu" class="hamburger-icon">
+        </div>
+          <ul id="navLinks" class="nav-links">
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="Kara Wong - Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+          </ul>
+        </div>
+      </nav>
+
+  <div class="title-container">
+    <div class="text-content">
+      <img src="images/upperflowerborder.png" alt="flower border" class="top-left-corner" />
+      <div class="fade-in-section">
+        <div class="title">Partiful: Shared Ideas</div>
+        <div class="description">Redesigning Partiful for a more casual user flow. <br><br> In collaboration with Emily Wang, Julie Chung, and Roberto Gonzales.</div>
+       
+      </div>
+    </div>
+    <div class="image-content fade-in-section">
+      <img src="images/partiful.png" alt="Partiful mock-ups" class="partiful-image" />
+    </div>
+  </div>
+
+<div class="overview-content">
+  <div class="overview-box fade-in-section">
+    <div class="overview-information">
+        <div class="overview-title">Role</div>
+        <div class="overview-description">UI/UX Designer</div>
+    </div>
+    <div class="overview-information">
+        <div class="overview-title">Timeline</div>
+        <div class="overview-description">March 2025 - April 2025</div>
+    </div>
+    <div class="overview-information">
+        <div class="overview-title">Skills</div>
+        <div class="overview-description">Iterative Design, Figma, User Testing</div>
+    </div>
+  </div>
+</div>
+
+<div class="content-container">
+  <div class="side-nav fade-in-section">
+    <ul>
+      <li><a href="#overview">What is Partiful?</a></li>
+      <li><a href="#pain-points">Pain Points</a></li>
+      <li><a href="#sketches">Sketches</a></li>
+      <li><a href="#wireframes">Wireframes</a></li>
+      <li><a href="#hifi-prototypes">Hi-Fi Prototypes</a></li>
+      <li><a href="#reflection">Reflection</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <section id="overview">
+      <h2 class="fade-in-section">What is Partiful?</h2>
+      <p class="fade-in-section">Partiful is a free party planning platform that streamlines the process of creating, managing, and sharing events. <br><br> As both a web and mobile application, Partiful's main focus is user-friendliness and simplicity, implementing features to easily track RSVPs, poll guests, and send reminders.</p>
+    </section>
+    <section id="pain-points">
+      <h2 class="fade-in-section">Pain Points</h2>
+      <p class="fade-in-section"><b>Formality:</b> The event creation process can be too superfluous for smaller parties. RSVPing to one host feels too official, and users often want to bypass features like choosing a theme or adding a cover photo.<br><br>
+        <b>Brainstorming:</b> Users tend to make Partiful invites only after the details have been finalized. Partiful wants to capture users earlier in the planning phase.
+      </p>
+    </section>
+    <section id="sketches">
+      <h2 class="fade-in-section">Sketches</h2>
+      <p class="fade-in-section">To brainstorm, we hand-sketched some elements we felt would best project a more casual atmosphere. <br><br>
+        While familiarizing ourselves with Partiful, we found some existing features, like Party Genie and Google Calendar Sync, that could further contribute to the platform's ease of use. To enhance discoverability, we experimented with bringing these features to the forefront of the user flow.</p>
+      <div class="carousel-container fade-in-section">
+        <button class="carousel-btn prev">&#10094;</button>
+        <div class="carousel-track">
+          <img src="images/karasketches.png" class="carousel-item" alt="Kara's Sketches" />
+          <img src="images/juliesketches.png" class="carousel-item" alt="Julie's Sketches" />
+          <img src="images/robertosketches.png" class="carousel-item" alt="Roberto's Sketches" />
+          <img src="images/emilysketches.png" class="carousel-item" alt="Emily's Sketches" />
+        </div>
+        <button class="carousel-btn next">&#10095;</button>
+      </div>
+    </section>
+    <section id="wireframes">
+      <h2 class="fade-in-section">Wireframes</h2>
+      <p class="fade-in-section">From our sketches, we agreed on an intermediate screen to separate formal events from casual hangouts. To streamline the planning process, we also incorporated a calendar-adjacent interface so that guests could more easily compromise on a time.<br><br>
+        We combined these features into a low-fidelity prototype on Balsamiq to send to our Partiful contact.
+      </p>
+      <div class="wireframe-container">
+        <img src="images/wireframe1.png" class="wireframes fade-in-section" alt="Balsamiq wireframes" />
+        <img src="images/wireframe2.png" class="wireframes fade-in-section" alt="Balsamiq wireframes" />
+        <img src="images/wireframe3.png" class="wireframes fade-in-section" alt="Balsamiq wireframes" />
+        <img src="images/wireframe4.png" class="wireframes fade-in-section" alt="Balsamiq wireframes" />
+      </div>
+    </section>
+    <section id="hifi-prototypes">
+      <h2 class="fade-in-section">Hi-Fi Prototypes</h2>
+      <p class="fade-in-section">From our client, we received feedback that the home page and multi-screen process may still be too crowded and overwhelming for a casual hangout.<br><br>
+        For our high-fidelity prototype, we focused on simplifying the calendar functionality and resizing elements based on priority. We also developed two parallel user flows to better align with the differing expectations and habits of our target audience.
+      </p>
+      <div class="hifi-container fade-in-section">
+        <img src="images/partiful1.gif" alt="High-fidelity prototype walkthrough" class="hifi-gif fade-in-section" />
+        <img src="images/partiful2.gif" alt="High-fidelity prototype walkthrough" class="hifi-gif fade-in-section" />
+      </div>
+      <div class="button-container">
+      <a href="https://www.figma.com/design/ZkEzO8PB1CpXHCNlY2GRsI/Partiful--Shared-Ideas?node-id=0-1&t=WuczTKX5zPEhEPGu-1" target="_blank" class="button-link">
+        <button class="prototype-button fade-in-section">Hi-Fi Prototype →</button>
+      </a>
+    </div>
+    </section>
+    <section id="reflection">
+      <h2 class="fade-in-section">Reflection</h2>
+      <p class="fade-in-section"> <b>Iterative Design:</b> Working and reworking prototypes through multiple rounds of brainstorming and feedback maximizes both user and client satisfaction.<br><br>
+        <b>Fail Fast:</b> Quickly identifying what does not work through early-stage testing allows us to pivot without investing too much time in the wrong direction.<br><br>
+        <b>Team Collaboration:</b> Building off of each other's ideas, giving and receiving feedback openly, and leveraging each team member’s strengths allowed us to build a more thoughtful and user-centered solution.
+      </p>
+    </section>
+  </div>
+</div>
+  <script>
+    const faders = document.querySelectorAll('.fade-in-section');
+  
+    const appearOptions = {
+      threshold: 0.02,
+      rootMargin: "0px 0px -20px 0px"
+    };
+  
+    const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('is-visible');
+        appearOnScroll.unobserve(entry.target);
+      });
+    }, appearOptions);
+  
+    faders.forEach(fader => {
+      appearOnScroll.observe(fader);
+    });
+  </script>
+  <script>
+    const items = document.querySelectorAll('.carousel-item');
+    const nextBtn = document.querySelector('.carousel-btn.next');
+    const prevBtn = document.querySelector('.carousel-btn.prev');
+    let currentIndex = 0;
+  
+    function updateCarousel() {
+      items.forEach((item, index) => {
+        item.classList.remove('active', 'prev', 'next');
+        if (index === currentIndex) {
+          item.classList.add('active');
+        } else if (index === (currentIndex + 1) % items.length) {
+          item.classList.add('next');
+        } else if (index === (currentIndex - 1 + items.length) % items.length) {
+          item.classList.add('prev');
+        }
+      });
+    }
+  
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % items.length;
+      updateCarousel();
+    });
+  
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + items.length) % items.length;
+      updateCarousel();
+    });
+  
+    updateCarousel();
+  </script>
+
+<script>
+  function toggleMenu() {
+    const navLinks = document.getElementById("navLinks");
+    navLinks.classList.toggle("active");
+  }
+</script>
+</body>
+</html>

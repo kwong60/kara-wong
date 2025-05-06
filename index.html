@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kara Wong</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Quando&display=swap" rel="stylesheet">
+  <style>
+    body {
+        font-family: "Quando", serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 24px;
+        margin: 0;
+        padding: 0;
+        scroll-behavior: smooth;
+        overflow-x: hidden;
+        }
+
+      html {
+        scroll-padding-top: 14vh;
+        scroll-behavior: smooth;
+      }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+      }
+
+    .logo {
+      height: 60px;
+      margin-left: 10%;
+      transition: transform 0.3s ease; 
+    }
+
+    .logo:hover {
+      transform: scale(1.1)
+    }
+
+    nav {
+        display: flex;
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background-color: #ffffff;
+        z-index: 1000;
+        height: 10%;
+        box-shadow: 0 2px 10px 0 rgba(0,0,0,.2);
+        justify-content: space-between;
+        }
+
+    nav ul {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        list-style: none;
+        justify-content: flex-end;
+        align-items: center;
+        }
+
+    nav ul li {
+        margin: 0 25px;
+        }
+
+    nav ul li a {
+        display: block;
+        padding: 25px;
+        color: rgb(0, 0, 0);
+        text-decoration: none;
+        transition: transform 0.3s ease;
+        font-size: 18px;
+    }
+
+    nav ul li a:hover {
+      transform: scale(1.1);
+      text-decoration: underline;
+    }
+
+    section {
+        border-bottom: 1px solid rgba(0,0,0,.2);
+        width: 90%;
+        margin: 1em auto;
+        margin-top: 2%
+        }
+
+      #home {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 86vh;
+        background-color: #ffffff;
+        text-align: center;
+        flex-direction: column;
+        margin-top: 14vh;
+      }
+
+        .section1-container {
+          display: flex;
+          width: 100%;
+          height: 100%;
+        }
+
+        .text-content {
+          width: 50%;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          padding-left: 6%
+        }
+
+        .top-left-corner {
+          transform: scaleX(-1);
+          width: 23%;
+          height: auto;
+          position: absolute;
+          top: 3vh;
+          left: -5%;
+          align-self: flex-start;
+        }
+
+        .intro {
+        font-size: 1.5em;
+        font-weight: 500;
+        color: #000000;
+        margin-bottom: 10%;
+        }
+
+        .tagline {
+        font-size: 0.9em;
+        color: #000000;
+        margin-bottom: 4%;
+        font-weight: 200;
+        width: 90%;
+        padding-left: 5%
+        }
+
+        .tagline2 {
+        font-size: 0.7em;
+        color: #000000;
+        font-weight: 200;
+        }
+
+        .image-content {
+          width: 50%;
+          overflow: hidden;
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .kara-image {
+          border-radius: 8px;
+          width: 50%;
+          height: auto
+        }
+
+        .contact-info {
+          padding-top: 6%; 
+          flex-direction: row;
+          transition: transform 1s ease;
+          }
+
+        .linkedin-icon {
+          width: 35px;
+          margin-right: 3%
+        }
+
+        .linkedin-icon:hover {
+          content: url(images/linkedinpurple.png);
+          cursor: pointer;
+          transform: translateY(-3px);
+        }
+
+        .github-icon {
+          width: 35px
+        }
+
+        .github-icon:hover {
+          content: url(images/githubpurple.png);
+          cursor: pointer;
+          transform: translateY(-3px);
+        }
+
+
+        .email-icon {
+          margin-left: 3%;
+          width: 35px
+        }
+
+        .email-icon:hover {
+          content: url(images/gmailpurple.png);
+          cursor: pointer;
+          transform: translateY(-3px);
+        }
+
+        a {
+          text-decoration: none;
+        }
+
+        .bottom-right-corner {
+          width: 20%;
+          height: auto;
+          position: absolute;
+          bottom: 0;
+          right: 0.5%;
+          align-self: flex-start;
+        }
+
+        .fade-in-section {
+          opacity: 0;
+          transform: translateY(5vh);
+          visibility: hidden;
+          transition: opacity 0.5s ease-out, transform 0.7s ease-out;
+          will-change: opacity, visibility;
+        }
+        
+        .fade-in-section.is-visible {
+          opacity: 1;
+          transform: none;
+          visibility: visible;
+        }
+
+        #about { 
+          background-color: #ffffff; 
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          flex-direction: column;
+        }
+
+        .title {
+            font-size: 1.5em;
+            font-weight: 500;
+            color: #000000;
+            margin-bottom: 3%;
+        }
+
+        .about-categories {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: center;
+          width: 100%;
+        }
+
+        .about-category {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          text-align: center;
+          flex-wrap: wrap;
+          width: 32%
+        }
+
+        .about-icon {
+          width: 100px;
+          margin-bottom: 3%
+        }
+
+        .about-descriptions {
+          display: flex;
+          flex-direction: row;
+          justify-content: space-around;
+          align-items: center;
+        }
+
+        .about-description {
+          font-size: 0.7em;
+          color: #000000;
+          font-weight: 200;
+          margin-bottom: 3%;
+          width: 25%;
+          text-align: center
+        }
+
+        #projects {  
+          background-color: #ffffff; 
+          justify-content: center;
+          align-items: center;
+          display: flex;
+          flex-direction: column; }
+
+          .project-card {
+            display: flex;
+            flex-direction: column;
+            width: 80%;
+            background-color: #E9EAFE;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin: 0.5em;
+            margin-bottom: 1em;
+            transition: transform 0.3s ease;
+          }
+
+          .project-card:hover {
+            transform: translateY(-5px);
+          }
+
+          .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            margin-top: 2%
+          }
+
+     
+          .project-content {
+            padding: 1.2em;
+            justify-content: center;
+            align-items: center;
+          }
+
+          .project-title {
+            font-size: 1em;
+            margin: 0 0 0.5em 0;
+            color: #000000;
+            text-align: center;
+          }
+
+          .project-description {
+            font-size: 0.5em;
+            color: #000000;
+            text-align: center;
+            margin-bottom: -1%;
+          }
+
+          .project-link {
+            font-weight: bold;
+            color: #6a1b9a;
+            text-decoration: underline;
+          }
+
+          .project-container {
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+          }
+
+          .project-container a {
+            width: calc(50% - 2rem);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+
+          #resume { 
+            background-color: #ffffff; 
+            justify-content: center;
+            align-items: center;
+            display: flex;
+            flex-direction: column;  
+          }
+
+        .prototype-button {
+        display: block;
+        margin-top: 5%;
+        margin-bottom: 20%;
+        padding: 12px 24px;
+        background-color: white;
+        color: rgb(0, 0, 0);
+        border: 2px solid rgb(0, 0, 0);
+        border-radius: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        font-family: "Quando", serif;;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+        font-weight: 550
+      }
+
+      .prototype-button:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+        background-color: #E9EAFE;
+      }
+
+      .button-link {
+        text-decoration: none;
+      }
+
+      footer.love-container {
+        background-color: #ffffff;
+        text-align: center;
+      }
+
+      .love {
+        font-size: 1rem;
+        color: #000;
+      }
+
+      .big-heart {
+        font-size: 1.2em;
+      }
+
+      .hamburger {
+        display: none;
+        font-size: 2em;
+        cursor: pointer;
+        margin-right: 20px
+      }
+
+      .hamburger-icon {
+        width: 70px;
+        height: auto;
+      }
+
+      .nav-right {
+        display: flex;
+        align-items: center;
+        margin-right: 0%;
+      }
+
+      @media screen and (max-width: 1200px){
+        .kara-image {
+            width: 55%
+          }
+      }
+
+      @media screen and (max-width: 900px) {
+        .project-container a {
+            width: calc(100% - 1rem);
+          }
+          .kara-image {
+            width: 63%
+          }
+  
+      }
+
+      @media screen and (max-width: 768px) {
+        .hamburger {
+          display: block;
+          padding-right: 20%;
+        }
+
+        .kara-image {
+            width: 65%
+          }
+
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          width: 100vw;
+          background-color: #ffffff;
+          position: fixed;
+          top: 10%;
+          left: 0;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+          max-height: 21vh;
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        nav ul {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        nav ul li {
+          width: 100%;
+          margin: 0;
+        }
+
+        nav ul li a {
+          width: 100%;
+          padding: 15px 25px;
+          border-bottom: 1px solid #ddd;
+        }
+
+        .top-left-corner {
+          width: 170px;
+          height: auto;
+          left: -35px;
+      }
+
+      
+        .bottom-right-corner {
+          width: 150px;
+        }
+
+        nav ul li a:hover {
+          transform: scale(1.01);
+          text-decoration: underline;
+        }
+
+    }
+
+  </style>
+</head>
+<body>
+    <nav>
+      <div class="logo-container">
+        <a href="#home">
+          <img src="images/karawonglogo.png" alt="Kara Wong Logo" class="logo" />
+        </a>
+      </div>
+      <div class="nav-right">
+      <div class="hamburger" onclick="toggleMenu()">
+        <img src="images/hamburger.png" alt="Menu" class="hamburger-icon">
+      </div>
+        <ul id="navLinks" class="nav-links">
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="Kara Wong - Resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+        </ul>
+      </div>
+      </nav>
+
+      <section id="home">
+        <div class="section1-container">
+          <div class="text-content">
+            <img src="images/upperflowerborder.png" alt="flower border" class="top-left-corner" />
+            <div class="fade-in-section">
+              <div class="intro">Hi, I'm Kara!</div>
+              <div class="tagline">I'm a product designer dedicated to creating data-driven yet visually-compelling solutions.</div>
+              <div class="contact-info">
+                <a href="https://www.linkedin.com/in/kara-wong-679a97345/">
+                  <img src="images/linkedinblack.png" alt="Kara Wong's Linkedin" class="linkedin-icon" />
+                </a>
+                <a href="https://github.com/kwong60">
+                  <img src="images/githubblack.png" alt="Kara Wong's GitHub" class="github-icon" />
+                </a>
+                <a href="mailto:kara.wong16@gmail.com">
+                  <img src="images/gmailblack.png" alt="Kara Wong's Email" class="email-icon" />
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="image-content fade-in-section">
+            <img src="images/kara.jpg" alt="Kara Wong" class="kara-image" />
+          </div>
+          <img src="images/lowerflowerborder.png" alt="flower border" class="bottom-right-corner" />
+        </div>
+      </section>
+      
+      <section id="projects">
+        <div class="title fade-in-section">Projects</div>
+        <div class="project-container">
+          <a href="partiful.html">
+          <div class="project-card fade-in-section">
+            <img src="images/partiful.png" alt="Partiful project thumbnail" class="project-image" />
+            <div class="project-content">
+              <h3 class="project-title">Partiful: Shared Ideas</h3>
+              <p class="project-description">
+                Redesigning Partiful for a more casual user flow.
+              </p>
+            </div>
+          </div>
+        </a>
+        <a href="newton.html">
+          <div class="project-card fade-in-section">
+            <img src="images/newton.png" alt="Partiful project thumbnail" class="project-image" />
+            <div class="project-content">
+              <h3 class="project-title">Newton, MA Homepage</h3>
+              <p class="project-description">
+                Creating a responsive interface for my hometown's homepage.
+              </p>
+            </div>
+          </div>
+        </a>
+        <a href="searchbar.html">
+          <div class="project-card fade-in-section">
+            <img src="images/searchbar.png" alt="search bar project thumbnail" class="project-image" />
+            <div class="project-content">
+              <h3 class="project-title">Search Bar: Case Study</h3>
+              <p class="project-description">
+                Exploring the subtle yet powerful role of the search bar.
+              </p>
+            </div>
+          </div>
+        </a>
+        <a href="bdh.html">
+          <div class="project-card fade-in-section">
+            <img src="images/bdh.png" alt="BDH project thumbnail" class="project-image" />
+            <div class="project-content">
+              <h3 class="project-title">Brown Daily Herald Mobile</h3>
+              <p class="project-description">
+                Developing a mobile app for the university newspaper.
+              </p>
+            </div>
+          </div>
+        </a>
+      </div>
+      </section>
+
+      <section id="about">
+        <div class="title fade-in-section">About</div>
+        <div class="about-categories fade-in-section">
+            <img src="images/computer.png" alt="computer science interests" class="about-icon" />
+            <img src="images/book.png" alt="reading interests" class="about-icon" />
+            <img src="images/cupcake.png" alt="dessert interests" class="about-icon" />
+        </div>
+        <div class="about-descriptions fade-in-section">
+          <div class="about-description">I'm interested in data science and artificial intelligence, but I enjoy product design as well. <br> <br>
+                                        I'm also a 5-time teaching assistant in the Brown CS Department.</div>
+          <div class="about-description">I love to read everything from cheesy comedies to psychological thrillers and am always on the hunt for new recs. <br> <br> 
+                                        Check out my <a href="https://www.goodreads.com/user/show/175368615-kara-wong" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">Goodreads</a>!</div>
+          <div class="about-description">A notorious sweet tooth, I'm always baking (and eating) desserts. <br> <br> 
+                                        Some of my favorites are tiramisu, macarons, and cheesecake!</div>
+        </div>
+      </div>
+      <a href="Kara Wong - Resume.pdf" target="_blank" class="button-link">
+        <button class="prototype-button fade-in-section"> Here's My Resume! → </button>
+      </a>
+      </section>
+
+      <footer class="love-container">
+        <p class="love">Made with <span class="big-heart">♡</span> by Kara Wong</p>
+      </footer>
+
+      <script>
+        const faders = document.querySelectorAll('.fade-in-section');
+      
+        const appearOptions = {
+          threshold: 0.1,
+          rootMargin: "0px 0px -50px 0px"
+        };
+      
+        const appearOnScroll = new IntersectionObserver(function(entries, appearOnScroll) {
+          entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            entry.target.classList.add('is-visible');
+            appearOnScroll.unobserve(entry.target);
+          });
+        }, appearOptions);
+      
+        faders.forEach(fader => {
+          appearOnScroll.observe(fader);
+        });
+      </script>
+
+    <script>
+      function toggleMenu() {
+        const navLinks = document.getElementById("navLinks");
+        navLinks.classList.toggle("active");
+      }
+    </script>
+</body>
+</html>
