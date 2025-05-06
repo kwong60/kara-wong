@@ -245,7 +245,7 @@
           display: flex;
           flex-direction: row;
           justify-content: space-around;
-          align-items: center;
+          align-items: flex-start;
           width: 100%;
         }
 
@@ -264,10 +264,12 @@
           margin-bottom: 3%
         }
 
-        .about-descriptions {
+        .about-group {
+          width: 400px;
           display: flex;
-          flex-direction: row;
-          justify-content: space-around;
+          flex-direction: column;
+          flex-wrap: wrap;
+          justify-content: center;
           align-items: center;
         }
 
@@ -276,7 +278,6 @@
           color: #000000;
           font-weight: 200;
           margin-bottom: 3%;
-          width: 25%;
           text-align: center
         }
 
@@ -434,6 +435,11 @@
             width: 63%
           }
   
+          .about-categories {
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem
+          }
       }
 
       @media screen and (max-width: 768px) {
@@ -597,17 +603,21 @@
       <section id="about">
         <div class="title fade-in-section">About</div>
         <div class="about-categories fade-in-section">
+          <div class="about-group">
             <img src="images/computer.png" alt="computer science interests" class="about-icon" />
+            <div class="about-description">I'm interested in data science and artificial intelligence, but I enjoy product design as well. <br> <br>
+              I'm also a 5-time teaching assistant in the Brown CS Department.</div>
+            </div>
+            <div class="about-group">
             <img src="images/book.png" alt="reading interests" class="about-icon" />
+            <div class="about-description">I love to read everything from cheesy comedies to psychological thrillers and am always on the hunt for new recs. <br> <br> 
+              Check out my <a href="https://www.goodreads.com/user/show/175368615-kara-wong" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">Goodreads</a>!</div>
+            </div>
+            <div class="about-group">
             <img src="images/cupcake.png" alt="dessert interests" class="about-icon" />
-        </div>
-        <div class="about-descriptions fade-in-section">
-          <div class="about-description">I'm interested in data science and artificial intelligence, but I enjoy product design as well. <br> <br>
-                                        I'm also a 5-time teaching assistant in the Brown CS Department.</div>
-          <div class="about-description">I love to read everything from cheesy comedies to psychological thrillers and am always on the hunt for new recs. <br> <br> 
-                                        Check out my <a href="https://www.goodreads.com/user/show/175368615-kara-wong" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">Goodreads</a>!</div>
-          <div class="about-description">A notorious sweet tooth, I'm always baking (and eating) desserts. <br> <br> 
-                                        Some of my favorites are tiramisu, macarons, and cheesecake!</div>
+            <div class="about-description">A notorious sweet tooth, I'm always baking (and eating) desserts. <br> <br> 
+              Some of my favorites are tiramisu, macarons, and cheesecake!</div>
+            </div>
         </div>
       </div>
       <a href="Kara Wong - Resume.pdf" target="_blank" class="button-link">
