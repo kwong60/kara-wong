@@ -266,7 +266,7 @@
         }
 
         .about-group {
-          width: 400px;
+          width: 30%;
           display: flex;
           flex-direction: column;
           flex-wrap: wrap;
@@ -420,11 +420,7 @@
         display: flex;
         align-items: center;}
 
-      @media screen and (max-width: 1200px){
-        .kara-image {
-            width: 55%
-          }
-      }
+      
 
       @media screen and (max-width: 900px) {
         .project-container a {
@@ -443,17 +439,28 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            margin-top: 15%;
           }
 
           .text-content {
-            width: 100%;
+            height: 20%;
+            width: 70%;
             padding-left: 0
           }
 
           .image-content {
-            width: 100%;
-            margin-top: 20px
+            height: 40%;
+            margin-top: 100px
           }
+
+          .kara-image {
+            height: 100%;
+            width: auto
+          }
+
+          .about-group {
+          width: 60%
+        }
       }
 
       @media screen and (max-width: 768px) {
@@ -462,6 +469,9 @@
           padding-right: 20%;
         }
 
+        .about-group {
+          width: 80%
+        }
      
         .nav-links {
           display: none;
@@ -514,6 +524,7 @@
           transform: scale(1.01);
           text-decoration: underline;
         }
+
 
     }
 
