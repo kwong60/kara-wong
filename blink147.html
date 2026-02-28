@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kara Wong | Search Bar: Case Study</title>
+  <title>Kara Wong | Blink-147</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Quando&display=swap" rel="stylesheet">
@@ -382,8 +382,33 @@
         background-color: #E9EAFE;
       }
 
+        .app-store-button {
+        display: block;
+        margin-top: 5%;
+        padding: 12px 24px;
+        background-color: white;
+        color: rgb(0, 0, 0);
+        border: 2px solid rgb(0, 0, 0);
+        border-radius: 10px;
+        font-size: 1rem;
+        cursor: pointer;
+        font-family: "Quando", serif;;
+        transition: box-shadow 0.2s ease, transform 0.2s ease;
+        font-weight: 550
+      }
+
+      .app-store-button:hover {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        transform: translateY(-2px);
+        background-color: #E9EAFE;
+      }
+
       .button-link {
         text-decoration: none;
+        justify-content: center;
+        align-items: center;
+        display: inline-block;
+        align-self: center;
       }
 
       .carousel-container {
@@ -622,7 +647,12 @@
         }
 
         .input-table-img {
-          width: 70%;
+          width: 60%;
+          height: auto;
+        }
+
+         .training {
+          width: 50%;
           height: auto;
         }
     
@@ -634,7 +664,7 @@
 
         .keyboard-state {
           margin-top: 3%;
-          width: 85%
+          width: 50%
         }
 
         .state-model-container {
@@ -895,13 +925,13 @@
     <div class="text-content">
       <img src="images/upperflowerborder.png" alt="flower border" class="top-left-corner" />
       <div class="fade-in-section">
-        <div class="title">Search Bar: Case Study</div>
-        <div class="description">Exploring the subtle yet powerful role of the search bar.</div>
+        <div class="title">Blink-147</div>
+        <div class="description">Designing an attention-based CNN to support eye movement-based communication for total paralysis patients. <br><br> In collaboration with Kana Takizawa, Navya Sahay, and Sissy Han.</div>
        
       </div>
     </div>
     <div class="image-content fade-in-section">
-      <img src="images/searchbarcover.png" alt="search bar redesign" class="cover-image" />
+      <img src="images/blink147cover.png" alt="Blink-147 Model Architecture" class="cover-image" />
     </div>
   </div>
 
@@ -909,15 +939,15 @@
   <div class="overview-box fade-in-section">
     <div class="overview-information">
         <div class="overview-title">Role</div>
-        <div class="overview-description">UX Researcher</div>
+        <div class="overview-description">Deep Learning Engineer</div>
     </div>
     <div class="overview-information">
         <div class="overview-title">Timeline</div>
-        <div class="overview-description">February 2025</div>
+        <div class="overview-description">March 2024 - May 2024</div>
     </div>
     <div class="overview-information">
         <div class="overview-title">Skills</div>
-        <div class="overview-description">Accessibility, State Models</div>
+        <div class="overview-description">Tensorflow, Data Management</div>
     </div>
   </div>
 </div>
@@ -926,11 +956,10 @@
   <div class="side-nav fade-in-section">
     <ul>
       <li><a href="#introduction">Introduction</a></li>
-      <li><a href="#applications">Applications</a></li>
-      <li><a href="#inputs">Inputs</a></li>
-      <li><a href="#outputs">Outputs</a></li>
-      <li><a href="#state-models">State Models</a></li>
-      <li><a href="#search-bar-redesign">Search Bar Redesign</a></li>
+      <li><a href="#preprocessing">Preprocessing</a></li>
+      <li><a href="#model-architecture">Model Architecture</a></li>
+      <li><a href="#challenges">Challenges</a></li>
+      <li><a href="#results">Results</a></li>
       <li><a href="#reflection">Reflection</a></li>
     </ul>
   </div>
@@ -938,12 +967,20 @@
   <div class="main-content">
     <section id="introduction">
       <h2 class="fade-in-section">Introduction</h2>
-      <p class="fade-in-section">What really brings the world to your fingertips? With infinite troves of knowledge circulating the world wide web, the search bar is often the unsung hero of user interfaces. <br><br> From navigating complex websites to discovering new information, the search bar can take you where you want to go, when you want to go there. But have we really mastered its design?</p>
+      <p class="fade-in-section">Total paralysis patients often rely on eye-based communication to relay basic needs. However, the success of communication hinges on the receiver's ability to interpret the sender's intention. <br><br> Therefore, we propose an attention-based CNN model to detect, classify, and translate eye movements into common phrases that can reach broader audiences. These classifications (left, right, up, and blink) can be integrated into three-component sets to key into a predefined eye alphabet that conveys information.</p>
+      <a href="https://github.com/kana820/Blink-147" target="_blank" class="button-link">
+        <button class="app-store-button fade-in-section">Blink-147 GitHub Repository →</button>
+      </a>
     </section>
-    <section id="applications">
-      <h2 class="fade-in-section">Applications</h2>
-      <p class="fade-in-section"> Let's explore the search bar through the lens of three different, well-established applications: Google, Photoshop, and Instagram. Here, we survey these three applications in various states, accepting various inputs.</p>
-      <p class="fade-in-section"><b>Google Desktop:</b></p>
+    <section id="preprocessing">
+      <h2 class="fade-in-section">Preprocessing</h2>
+      <p class="fade-in-section">We used unlabelled facial data from the 
+        <a href="http://parnec.nuaa.edu.cn/_upload/tpl/02/db/731/template731/pages/xtan/ClosedEyeDatabases.html" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">Closed Eyes in the Wild dataset</a> 
+  and manually labelled each image. <br><br>The data was then shuffled and split at a 3:1 ratio between training and testing. We normalized each image by scaling pixel values between 0 and 1. Each label was one-hot encoded.
+</p>
+
+<p class="fade-in-section">To manage imbalance in the dataset in one version of the model, we downsampled “blink” images and augmented all others (e.g. crop, flip, contrast, saturation). </p>
+      <!-- <p class="fade-in-section"><b>Google Desktop:</b></p>
       <div class="carousel-container fade-in-section">
         <button class="carousel-btn prev">&#10094;</button>
         <div class="carousel-track">
@@ -972,49 +1009,42 @@
           <img src="images/igquery.PNG" class="ig-img" alt="Instagram Query Entered" />
         </div>
         <button class="carousel-btn-ig next">&#10095;</button>
-      </div>
+      </div> -->
     </section>
-    <section id="inputs">
-      <h2 class="fade-in-section">Inputs</h2>
-      <p class="fade-in-section">Let's first compare how these three applications accept and interact with different types of input.</p>
+    <section id="model-architecture">
+      <h2 class="fade-in-section">Model Architecture</h2>
+      <p class="fade-in-section">Our model architecture is a supervised, attention-based CNN comprised of four convolutional layers with LeakyReLU activations, each followed by a max-pooling operation incorporated with an attention mechanism. <br><br> These attention layers are concatenated into a feature vector that is fed through three fully-connected dense layers before getting passed to a softmax activation function to return the probabilities across the four classes. 
+</p>
       <div class="input-table-container fade-in-section">
-        <img src="images/inputtable.png" class="input-table-img" alt="Input Table">
+        <img src="images/blink147cover.png" class="input-table-img" alt="Blink-147 Model Architecture" />
       </div>
     </section>
-    <section id="outputs">
-      <h2 class="fade-in-section">Outputs</h2>
-      <p class="fade-in-section">Next, let's evaluate how the three applications react to these inputs in terms of both visual and accessible features. Note that Narrator (Windows) was used for the screen reader analysis.
+    <section id="challenges">
+      <h2 class="fade-in-section">Challenges</h2>
+       <p class="fade-in-section"> <b>Imbalanced Dataset:</b> Our model was learning to "cheat" by only predicting the dominant class (blink). To mitigate this, we experimented with weighted loss, weighted sampling, data augmentation, and downsampling.<br><br>
+        <b>Overfitting:</b> Due to the limited variation within our small dataset, the complex architecture of our model was prone to capturing noise. We trialed regularization techniques and dropout layers to temper the model complexity.
       </p>
+    </section>
+    <section id="results">
+      <h2 class="fade-in-section">Results</h2>
+      <p class="fade-in-section">Training accuracy across different model iterations can be visualized below, with the best performing model (using weighted sampling) achieving 91.8% training accuracy and 77.6% testing accuracy.
+      </p>
+      <p class="fade-in-section"><b>Training Accuracy:</b></p>
       <div class="input-table-container fade-in-section">
-        <img src="images/outputtable.png" class="input-table-img" alt="Output Table">
+        <img src="images/trainingaccuracy.png" class="training" alt="Blink-147 Training Accuracy Graph" />
       </div>
-    </section>
-    <section id="state-models">
-      <h2 class="fade-in-section">State Models</h2>
-      <p class="fade-in-section">We can create state models to visualize how both mouse and keyboard users can interact with the Google search bar in different states.
+      <p class="fade-in-section"> The confusion matrix for the weighted sampling model also demonstrates an advanced ability to classify the non-blink classes, which is crucial for effective communication. We compared this matrix to that of the current state-of-the-art baseline model.
       </p>
-      <p class="fade-in-section"><b>Mouse User State Model:</b></p>
+
+      <p class="fade-in-section"><b>Confusion Matrix:</b></p>
       <div class="state-model-container">
-        <img src="images/mousestate.png" alt="Mouse State Model" class="mouse-state fade-in-section" />
-      </div>
-      <p class="fade-in-section"><b>Keyboard User State Model:</b></p>
-      <div class="state-model-container">
-        <img src="images/keyboardstate.png" alt="Keyboard State Model" class="keyboard-state fade-in-section" />
+        <img src="images/confusionmatrix.png" alt="Confusion Matrix" class="keyboard-state fade-in-section" />
         </div>
-    </section>
-    <section id="search-bar-redesign">
-      <h2 class="fade-in-section">Search Bar Redesign</h2>
-      <p class="fade-in-section">Based on the limitations highlighted in the above models, adding a submit button to the search bar would allow mouse users to much more easily submit their queries.
-      </p>
-      <div class="state-model-container">
-        <img src="images/googleredesign.png" alt="Google Search Bar Redesign" class="redesign fade-in-section" />
-      </div>
     </section>
     <section id="reflection">
       <h2 class="fade-in-section">Reflection</h2>
-      <p class="fade-in-section"> <b>Trade-Offs:</b> All components face accessibility trade-offs for different kinds of users. What is convenient for mouse users may not be helpful for keyboard users.<br><br>
-        <b>Purpose:</b> It is important to consider the purpose of a component when designing it. For instance, Instagram is a social media platform, so its search bar might focus more on content recommendation than simplicity.
-      </p>
+      <p class="fade-in-section"> <b>Trade-Offs:</b> All architectural choices introduced trade-offs. Model design rarely focuses on maximizing a single metric, but rather balancing interpretability, robustness, and performance.<br><br>
+        <b>Mitigating Bias:</b> Addressing imbalance in the dataset was crucial to ensure that our model could effectively classify all categories. Acknowledging this bias is not only a technical need, but also an ethical responsibility. For assistive technologies in particular, these types of failures disproportionately affect already vulnerable users.
     </section>
   </div>
 </div>
